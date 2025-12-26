@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زیبایی واقعی در پوشیدگی، عفاف و حجاب</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-green: #4A6741;
+            --light-gold: #FFD700;
+            --soft-white: #FFFEF0;
+            --arabic-gold: #ffffff;
+            --dark-text: #2C3E2A;
+            --glass-bg: rgba(255, 254, 240, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Shiraz', 'Tahoma', sans-serif;
+            background-color: var(--primary-green);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Shiraz';
+            src: local('Shiraz'), url('fonts/Shiraz.woff2') format('woff2');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Sourna';
+            src: local('Sourna'), url('fonts/Sourna.woff2') format('woff2');
+            font-display: swap;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+
+        .welcome-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: var(--soft-white);
+            padding: 40px;
+            max-width: 600px;
+        }
+
+        .welcome-title {
+            font-family: 'Shiraz', serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--light-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.4;
+        }
+
+        .welcome-subtitle {
+            font-family: 'Sourna', sans-serif;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Floating Stars Background */
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typography */
+        h1, h2 {
+            font-family: 'Shiraz', serif;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--soft-white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--arabic-gold);
+            text-align: center;
+            margin: 20px 0;
+            line-height: 2;
+            direction: rtl;
+        }
+
+        .persian-text {
+            font-family: 'Sourna', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin: 15px 0;
+            color: var(--dark-text);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(44, 62, 42, 0.9);
+            color: var(--soft-white);
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .footer h3 {
+            font-family: 'Shiraz', serif;
+            margin-bottom: 20px;
+            color: var(--light-gold);
+        }
+
+        .footer-content {
+            display: grid;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            font-family: 'Sourna', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .sources {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .sources a {
+            color: var(--light-gold);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .sources a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .arabic-text { font-size: 1.2rem; }
+            .persian-text { font-size: 1rem; }
+            .glass-card { padding: 20px; margin: 15px 0; }
+            .welcome-title { font-size: 2rem; }
+            .welcome-subtitle { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.3rem; }
+            .arabic-text { font-size: 1.1rem; }
+            .persian-text { font-size: 0.95rem; }
+            .main-content { padding: 15px; }
+            .welcome-title { font-size: 1.5rem; }
+            .welcome-subtitle { font-size: 0.9rem; }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Welcome Screen - Auto hide after 4 seconds -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <h1 class="welcome-title">زیبایی واقعی در پوشیدگی، عفاف و حجاب</h1>
+            <p class="welcome-subtitle">
+                به دنیای پرنور ایمان، عفت و حیا خوش آمدید
+                <br>
+                در این مسیر نورانی، با آیات و احادیث، زیبایی حقیقی را کشف خواهیم کرد
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <h1>زیبایی واقعی در پوشیدگی، عفاف و حجاب</h1>
+
+        <!-- Section 1: Beauty in Modesty -->
+        <section class="glass-card" style="animation-delay: 0.2s;">
+            <h2>✨ زیبایی واقعی در پوشیدگی</h2>
+            
+            <p class="persian-text">
+                زیبایی واقعی انسان، در ظاهر و پوشش او نیست، بلکه در باطن و شخصیت اوست. حجاب و پوشیدگی، نه تنها مانع زیبایی نیست، بلکه آن را در چشم بیننده، جاودانه می‌سازد. وقتی انسان با حیا و عفت باشد، زیبایی‌اش پایدار و درخشان می‌شود. حجاب، حافظ کرامت انسانی است و مانع از آن می‌شود که انسان، صرفاً به عنوان یک شیء مورد نظر قرار گیرد.
+            </p>
+
+            <div class="arabic-text">
+                یَا بَنِی آدَمَ قَدْ أَنْزَلْنَا عَلَیْکُمْ لِبَاسًا یُوَارِی سَوْآتِکُمْ وَرِیشًا
+                <br>
+                <small style="color: var(--dark-text); font-size: 0.9rem;">(سوره اعراف، آیه ۲۶)</small>
+            </div>
+
+            <h3 style="font-family: 'Shiraz'; color: var(--primary-green); margin: 20px 0 10px 0;">احادیثی از معصومین (ع)</h3>
+            
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                مَنْ خَفَّضَ بَصَرَهُ عَنِ الْحَرَامِ خَوْفاً مِنَ اللّهِ، أَعْطَاهُ اللّهُ إِیمَاناً یَجِدُ حَلاوَتَهُ فِی قَلْبِهِ
+            </div>
+
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                اللّهُمَّ أَحْفَظْ نِسَاءَنَا بِالْحِجَابِ وَ الْعِفَّةِ، وَ أَجِرْهُنَّ مِنَ الرَّحْمَةِ وَ الْمَغْفِرَةِ
+            </div>
+
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                سَتْرُ الْمَرْأَةِ وَ حِفْظُهَا أَرْبَى لِلرَّاحَةِ وَ أَدْوَمُ لِجَمَالِهَا
+            </div>
+        </section>
+
+        <!-- Section 2: Modesty and Hijab -->
+        <section class="glass-card" style="animation-delay: 0.4s;">
+            <h2>🤲 عفاف و حجاب؛ هدیه الهی برای کرامت انسانی</h2>
+            
+            <p class="persian-text">
+                عفاف، یعنی پاکدامنی و پرهیز از هر گونه بی‌بندوباری. حجاب، ابزار و وسیله‌ای برای حفظ عفاف است. این دو، هدیه‌ای الهی هستند که انسان را به کرامت و شرافت می‌رسانند. عفاف و حجاب، انسان را از آلودگی‌های اخلاقی و اجتماعی حفظ می‌کنند و او را در مسیر رشد و کمال، یاری می‌دهند. این دو، نشانه ایمان و تقوا هستند و انسان را در برابر آسیب‌های اجتماعی، مصون می‌دارند.
+            </p>
+
+            <div class="arabic-text">
+                ذَلِکَ أَدْنَى أَنْ یُعْرَفْنَ فَلَا یُؤْذَیْنَ
+                <br>
+                <small style="color: var(--dark-text); font-size: 0.9rem;">(سوره احزاب، آیه ۵۹)</small>
+            </div>
+
+            <h3 style="font-family: 'Shiraz'; color: var(--primary-green); margin: 20px 0 10px 0;">احادیثی از معصومین (ع)</h3>
+            
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                خَیْرُ نِسَائِکُمُ الَّتِی تَتَزَیَّنُ لِزَوْجِهَا، وَ تَتَحَجَّبُ عَنِ الْأَجْنَبِیِّینَ
+            </div>
+
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                حَجِبُوا نِسَاءَکُمْ عَنِ الْأَجْنَبِیِّینَ، فَإِنَّ النِّسَاءَ إِذَا کُنَّ أَکْثَرَ سَتْراً کُنَّ أَعْظَمَ سَعَادَةً
+            </div>
+
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                زَکَاةُ الْجَمَالِ الْعَفَافُ
+            </div>
+        </section>
+
+        <!-- Section 3: Fruits of Modesty -->
+        <section class="glass-card" style="animation-delay: 0.6s;">
+            <h2>📿 ثمرات و برکات عفاف و حجاب در فرد و جامعه</h2>
+            
+            <p class="persian-text">
+                عفاف و حجاب، آثار و برکات فراوانی در سطح فردی و اجتماعی دارند. در سطح فردی، موجب آرامش روانی، امنیت خاطر، حفظ کرامت و شخصیت، و تقویت ایمان و تقوا می‌شوند. در سطح اجتماعی، موجب امنیت اجتماعی، کاهش جرایم، تقویت خانواده، و سلامت جامعه می‌شوند. جامعه‌ای که در آن عفاف و حجاب حاکم باشد، جامعه‌ای سالم، آرام و پر از صلح و دوستی است.
+            </p>
+
+            <h3 style="font-family: 'Shiraz'; color: var(--primary-green); margin: 20px 0 10px 0;">احادیثی از معصومین (ع)</h3>
+            
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                مَنْ صَبَرَ مِنَ النِّسَاءِ عَلَى الْحِجَابِ وَ الْغَیْرَةِ، أَعْطَاهَا اللّهُ أَجْرَ الشُّهَدَاءِ
+            </div>
+
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                خَیْرُ اللِّبَاسِ مَا لَمْ یَشْغَلْکَ عَنِ اللّهِ
+            </div>
+
+            <div class="arabic-text" style="font-size: 1.1rem;">
+                حِجَابُ الْمَرْأَةِ أَنْفَعُ لَهَا فِی حَفْظِ طُرَاوَتِهَا وَ جَمَالِهَا
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <h3>کار گروهی متشکل از:</h3>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <p>• صنم زنگویی نژاد</p>
+                    <p>• ارغوان بیات</p>
+                    <p>• زهرا صالحی</p>
+                </div>
+                <div class="footer-section">
+                    <p><strong>دبیر راهنما:</strong> سرکار خانم دشتی</p>
+                    <p><strong>دبیرستان حوا - پایه نهم</strong></p>
+                </div>
+                <div class="sources">
+                    <h3>منابع:</h3>
+                    <p>
+                        <a href="https://www.aparat.com/v/USncC" target="_blank" rel="noopener">Aparat - ویدیوهای آموزشی</a> | 
+                        <a href="https://farsi.khamenei.ir" target="_blank" rel="noopener">Khamenei.ir</a> | 
+                        <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Auto-hide welcome screen after 4 seconds
+        setTimeout(() => {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('visible');
+            startFloatingStars();
+        }, 4000);
+
+        // Create floating stars
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 2; // 2-5px
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const duration = Math.random() * 5 + 3; // 3-8s
+            const delay = Math.random() * 3; // 0-3s
+
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${x}px`;
+            star.style.top = `${y}px`;
+            star.style.animationDuration = `${duration}s`;
+            star.style.animationDelay = `${delay}s`;
+
+            document.body.appendChild(star);
+
+            // Remove star after animation
+            setTimeout(() => {
+                if (star.parentNode) {
+                    star.parentNode.removeChild(star);
+                }
+            }, (duration + delay) * 1000);
+        }
+
+        // Start floating stars
+        function startFloatingStars() {
+            setInterval(createStar, 800); // Create a new star every 0.8 seconds
+        }
+    </script>
+</body>
+</html>
